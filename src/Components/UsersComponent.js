@@ -5,8 +5,8 @@ import {getUsers} from "../api/API";
 
 
 
-export default function UsersComponent() {
-
+export default function UsersComponent(props) {
+    const {navigation} = props
     const [users, setAlUsers] = useState([])
     const fetchUsers = async () => {
         const users = await getUsers()
@@ -23,7 +23,7 @@ export default function UsersComponent() {
             <FlatList
             data={users}
             renderItem={({item})=>(
-                <UserComponent item={item}/>
+                <UserComponent nav={navigation} item={item}/>
                 )}
             keyExtractor={item=>item.id + ''}
             />
